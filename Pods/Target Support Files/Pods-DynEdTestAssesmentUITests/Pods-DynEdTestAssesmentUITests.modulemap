@@ -1,0 +1,6 @@
+framework module Pods_DynEdTestAssesmentUITests {
+  umbrella header "Pods-DynEdTestAssesmentUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
