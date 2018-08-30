@@ -41,7 +41,9 @@ class ViewController: UIViewController {
             let alert = UIAlertController(title: "Error", message: e.localizedDescription, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { (_) in
                 alert.dismiss(animated: true, completion: nil)
+                
             }))
+            self.view.endEditing(true)
             self.present(alert, animated: true, completion: nil)
         }.disposed(by: vm.disposeBag)
         fieldSearch.rx.text.orEmpty.bind(to: vm.queryString).disposed(by: vm.disposeBag)

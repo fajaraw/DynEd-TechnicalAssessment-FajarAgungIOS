@@ -40,8 +40,12 @@ class MainViewModel {
         let q = query.replacingOccurrences(of: "#", with: queryString.value ?? "")
         ApiHelper.instance.post(query: q)
             .responseJSON(completionHandler: { (response) in
+                print(response.result.value)
                 if response.result.isSuccess {
                     let json = JSON(response.result.value ?? "")
+                    if let badMessage = json["message"].string {
+                        self.error.accept(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey:badMessage]))
+                    }
                     let items = json["data"]["search"]["nodes"].arrayValue
                     var temp:[UserModelLite] = []
                     items.forEach({ (json) in
