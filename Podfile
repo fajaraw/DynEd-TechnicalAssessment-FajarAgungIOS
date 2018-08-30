@@ -12,6 +12,7 @@ target 'DynEdTestAssesment' do
   pod 'RxSwift',    '~> 4.0'
   pod 'RxCocoa',    '~> 4.0'
   pod 'DateToolsSwift'
+  pod 'MarkdownView'
 
   target 'DynEdTestAssesmentTests' do
     inherit! :search_paths

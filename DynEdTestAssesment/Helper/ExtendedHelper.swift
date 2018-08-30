@@ -13,6 +13,20 @@ extension UIColor {
     convenience init(r:Int,g:Int,b:Int,a:CGFloat = 1) {
         self.init(red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: a)
     }
+    
+    convenience init(hex:String, a:CGFloat = 1){
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        if ((cString.count) != 6) {
+            self.init(white: 0, alpha: 1)
+            return
+        }
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        self.init(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0, green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0, blue: CGFloat(rgbValue & 0x0000FF) / 255.0, alpha: a)
+    }
 }
 
 extension UIImageView {

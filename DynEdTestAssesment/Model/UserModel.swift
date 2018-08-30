@@ -17,6 +17,8 @@ class UserModelLite {
     lazy var name = ""
     lazy var email = ""
     lazy var avatar = ""
+    lazy var followersCount = ""
+    lazy var followingCount = ""
     
     init(_ json:JSON) {
         parse(json)
@@ -31,5 +33,7 @@ class UserModelLite {
         name = json["name"].stringValue
         email = json["email"].stringValue
         avatar = json["avatarUrl"].stringValue
+        followersCount = json["followers"]["totalCount"].stringValue
+        followingCount = json["following"]["totalCount"].stringValue
     }
 }

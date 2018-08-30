@@ -1,1 +1,1 @@
-{ user(login: "#") { login name email avatarUrl repositories(first: 30) { nodes { ... on Repository { id name pushedAt  updatedAt owner { login } languages(first: 2) { edges { node { color name } } } } } } } }
+{ user(login: "#") { repositories(first: 30) { nodes { ... on Repository { id name description stargazers { totalCount } forkCount pushedAt updatedAt owner { login } primaryLanguage { color name } } } } } }
