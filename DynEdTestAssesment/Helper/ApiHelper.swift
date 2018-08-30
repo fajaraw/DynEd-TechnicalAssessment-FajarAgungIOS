@@ -12,7 +12,7 @@ class ApiHelper: NSObject {
     static let instance = ApiHelper()
     
     func post(query:String) -> DataRequest{
-        let header = ["Authorization":"Bearer \(APIConstant.oauth)"]
+        let header = ["Authorization":"Bearer \(APIConstant.token)"]
         return request(APIConstant.BaseGraphUrl, method: .post, parameters: ["query":query], encoding: JSONEncoding.default, headers: header)
     }
     
