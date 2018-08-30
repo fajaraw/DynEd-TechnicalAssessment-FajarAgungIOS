@@ -23,12 +23,16 @@ class DetailRepositoryViewController: UIViewController {
     @IBOutlet weak var labelLicense: UILabel!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var markdown: MarkdownView!
+    @IBOutlet weak var indicatorLoading: UIView!
     
     
     let vm = DetailRepositoryViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        markdown.onRendered = { height in
+            self.indicatorLoading.isHidden = true
+        }
         vm.repository.bind { (repo) in
             self.labelName.text = repo.name
             self.labelLogin.text = repo.ownerName
@@ -42,6 +46,14 @@ class DetailRepositoryViewController: UIViewController {
 //            self.webView.loadHTMLString(repo.readmeText, baseURL: nil)
             self.markdown.load(markdown: repo.readmeText, enableImage: true)
         }.disposed(by: vm.disposeBag)
+        vm.error.bind { (error) in
+            guard let e = error else {return}
+            let alert = UIAlertController(title: "Error", message: e.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { (_) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+            }.disposed(by: vm.disposeBag)
         vm.getRepository()
     }
 

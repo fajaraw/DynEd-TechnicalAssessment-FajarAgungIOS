@@ -28,10 +28,21 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         vm.userList.bind { (_) in
+            print("user \(self.vm.userList.value.count)")
             self.tableViewUser.reloadData()
+            
         }.disposed(by: vm.disposeBag)
         vm.repoList.bind { (_) in
             self.tableViewRepo.reloadData()
+            self.vm.changeLoadMore()
+        }.disposed(by: vm.disposeBag)
+        vm.error.bind { (error) in
+            guard let e = error else {return}
+            let alert = UIAlertController(title: "Error", message: e.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { (_) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
         }.disposed(by: vm.disposeBag)
         fieldSearch.rx.text.orEmpty.bind(to: vm.queryString).disposed(by: vm.disposeBag)
         tableViewRepo.register(RepositoryTableViewCell.nib, forCellReuseIdentifier: RepositoryTableViewCell.identifierName)
@@ -90,6 +101,14 @@ extension ViewController :UITableViewDelegate, UITableViewDataSource {
             vc.vm.login = labelLogin.text ?? ""
             vc.vm.repoName = item.name
             self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height - 100 - scrollView.bounds.size.height {
+            if vm.isLoadMore {
+                vm.loadMore()
+            }
         }
     }
 }

@@ -1,1 +1,1 @@
-{ user(login: "#") { repositories(first: 30) { nodes { ... on Repository { id name description stargazers { totalCount } forkCount pushedAt updatedAt owner { login } primaryLanguage { color name } } } } } }
+{ user(login: "#1") { repositories(first: 10,after:#2) { edges { cursor node { id name description stargazers { totalCount } forkCount pushedAt updatedAt owner { login } primaryLanguage { color name } } } } } }

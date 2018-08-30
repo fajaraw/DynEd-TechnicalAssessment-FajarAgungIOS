@@ -679,10 +679,24 @@
                                         <rect key="frame" x="0.0" y="252" width="375" height="415"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlS-53-dDm">
+                                        <rect key="frame" x="-0.5" y="252" width="375" height="415"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2NX-Ld-63W">
+                                                <rect key="frame" x="169" y="189" width="37" height="37"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="2NX-Ld-63W" firstAttribute="centerY" secondItem="rlS-53-dDm" secondAttribute="centerY" id="Okw-vg-AoF"/>
+                                            <constraint firstItem="2NX-Ld-63W" firstAttribute="centerX" secondItem="rlS-53-dDm" secondAttribute="centerX" id="s12-Up-LnE"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="kdf-zf-WgT" firstAttribute="leading" secondItem="3UR-E4-enk" secondAttribute="leading" id="2GC-ag-OSf"/>
+                                    <constraint firstItem="rlS-53-dDm" firstAttribute="centerX" secondItem="kdf-zf-WgT" secondAttribute="centerX" id="6uC-bA-xIG"/>
                                     <constraint firstItem="t1X-Qt-CoN" firstAttribute="centerX" secondItem="3UR-E4-enk" secondAttribute="centerX" id="8AA-Vv-s7o"/>
                                     <constraint firstAttribute="bottom" secondItem="kdf-zf-WgT" secondAttribute="bottom" id="9r1-6S-kXe"/>
                                     <constraint firstAttribute="trailing" secondItem="EZ6-Q5-JVf" secondAttribute="trailing" constant="60" id="I8Y-5m-hrz"/>
@@ -696,10 +710,13 @@
                                     <constraint firstItem="EZ6-Q5-JVf" firstAttribute="centerY" secondItem="PxJ-VU-dtt" secondAttribute="centerY" id="XM6-8B-xtS"/>
                                     <constraint firstItem="PxJ-VU-dtt" firstAttribute="leading" secondItem="3UR-E4-enk" secondAttribute="leading" constant="20" id="dpH-Lo-y91"/>
                                     <constraint firstItem="PxJ-VU-dtt" firstAttribute="top" secondItem="3UR-E4-enk" secondAttribute="top" constant="30" id="eXY-NK-yxA"/>
+                                    <constraint firstItem="rlS-53-dDm" firstAttribute="height" secondItem="kdf-zf-WgT" secondAttribute="height" id="hu1-2J-6Lc"/>
+                                    <constraint firstItem="rlS-53-dDm" firstAttribute="width" secondItem="kdf-zf-WgT" secondAttribute="width" id="l4n-Ee-ujY"/>
                                     <constraint firstItem="EZ6-Q5-JVf" firstAttribute="leading" secondItem="3UR-E4-enk" secondAttribute="leading" constant="60" id="pKr-OD-1t8"/>
                                     <constraint firstAttribute="trailing" secondItem="kdf-zf-WgT" secondAttribute="trailing" id="pdF-df-Yl2"/>
                                     <constraint firstItem="EZ6-Q5-JVf" firstAttribute="centerX" secondItem="3UR-E4-enk" secondAttribute="centerX" id="pip-fS-IRN"/>
                                     <constraint firstItem="kdf-zf-WgT" firstAttribute="top" secondItem="8OR-DF-EbT" secondAttribute="bottom" id="rOJ-pR-Su4"/>
+                                    <constraint firstItem="rlS-53-dDm" firstAttribute="centerY" secondItem="kdf-zf-WgT" secondAttribute="centerY" id="tln-RT-oF2"/>
                                     <constraint firstItem="t1X-Qt-CoN" firstAttribute="top" secondItem="EZ6-Q5-JVf" secondAttribute="bottom" constant="5" id="uk7-kD-RZH"/>
                                 </constraints>
                             </view>
@@ -714,6 +731,7 @@
                         <viewLayoutGuide key="safeArea" id="61K-GC-bjb"/>
                     </view>
                     <connections>
+                        <outlet property="indicatorLoading" destination="rlS-53-dDm" id="zbC-u5-etC"/>
                         <outlet property="labelBranch" destination="Tjm-1h-LXo" id="iU8-4O-poj"/>
                         <outlet property="labelCommit" destination="qc8-9z-f70" id="FPb-Y2-dlX"/>
                         <outlet property="labelFork" destination="kj8-Fb-wNa" id="3nL-xg-2Vd"/>

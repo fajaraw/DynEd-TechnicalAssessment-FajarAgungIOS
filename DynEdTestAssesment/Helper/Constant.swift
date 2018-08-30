@@ -10,7 +10,7 @@ import UIKit
 
 struct APIConstant {
     static let BaseURL = "https://api.github.com/"
-    static let oauth = "81d5bc6cc77b40cfa2bad2f7ec83f1c23b48afc7"
+    static let oauth = "df6fc67d60391783f094d2e9a3381a5ee2e84616"
     static let searchUser = BaseURL + "search/users?q="
     static let BaseGraphUrl = "https://api.github.com/graphql"
 }

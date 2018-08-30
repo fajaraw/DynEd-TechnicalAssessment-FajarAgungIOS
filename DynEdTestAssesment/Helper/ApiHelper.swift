@@ -11,14 +11,18 @@ import Alamofire
 class ApiHelper: NSObject {
     static let instance = ApiHelper()
     
-    func post(fileName:String, query:String) -> DataRequest? {
+    func post(query:String) -> DataRequest{
         let header = ["Authorization":"Bearer \(APIConstant.oauth)"]
+        return request(APIConstant.BaseGraphUrl, method: .post, parameters: ["query":query], encoding: JSONEncoding.default, headers: header)
+    }
+    
+    static func getFile(fileName:String) ->String? {
         if let path = Bundle.main.path(forResource: fileName, ofType: "ql"){
             do {
-                let queryStr = try String(contentsOfFile: path).replacingOccurrences(of: "#", with: query)
-                return request(APIConstant.BaseGraphUrl, method: .post, parameters: ["query":queryStr], encoding: JSONEncoding.default, headers: header)
+                return try String(contentsOfFile: path)
             }catch let e{
                 print("error \(e)")
+                return nil
             }
         }
         return nil
